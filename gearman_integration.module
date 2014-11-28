@@ -1,0 +1,35 @@
+<?php
+/**
+ * @file
+ * Gearman application framework integration module.
+ */
+
+define('GEARMAN_DEFAULT_SERVER', '127.0.0.1');
+define('GEARMAN_DEFAULT_PORT', '4730');
+
+// Always includes common file.
+module_load_include('inc', 'gearman_integration', 'inc/gearman_integration.common');
+module_load_include('php', 'gearman_integration', 'inc/GearmanTelnet');
+
+
+// $status = new Waps_Gearman_Server();
+// exit(var_dump($status->getStatus()));
+
+/**
+ * Implements of hook_menu()
+ *
+ * Admin settings callbacks so that drupal can connect to the Gearmand server.
+ */
+function gearman_integration_menu() {
+  $items = array();
+  $items['admin/config/system/gearman-integration'] = array(
+    'title' => 'Gearman configuration',
+    'description' => 'Configure your drupal site to connect to a Gearman job queue.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('gearman_integration_admin_general_settings'),
+    'access arguments' => array('administer gearman_integration configuration'),
+    'file' => 'inc/gearman_integration.admin.inc',
+  );
+  
+  return $items;
+}

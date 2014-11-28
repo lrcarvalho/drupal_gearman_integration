@@ -1,0 +1,10 @@
+name = Gearman Integration
+description = Provides simple integration with Gearman Server.
+
+
+
+configure = admin/config/system/gearman-integration
+
+package = Gearman Integration
+core = 7.x
+version = "7.x-1.0"
